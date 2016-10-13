@@ -43,9 +43,7 @@ public class TipoDocumentoDao implements ITipoDocumentoDao {
         } catch (SQLException ex) {
             Logger.getLogger(TipoDocumentoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        finally{
-            
-        }
+       
         return tipos;
     }
     /*

@@ -10,7 +10,7 @@ import Fachada.INegocio;
 import Fachada.INegocioUtil;
 import Negocio.Negocio;
 import Negocio.NegocioUtil;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -40,12 +40,15 @@ public class Servicio {
             String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento,
             String paisNacimiento, String paisActual, String usuario, String contra) {
 
-        boolean x = false;
+        boolean x = true;
         TipoDocumento t = this.buscarDocumento(tipoDoc);
         if (t != null) {
+            System.out.println("Entro a servicio");
             x = this.negocio.registrarEstudiante(t, numDoc, correo, fechaNacimiento, 
                     tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
-                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, paisActual, usuario, contra);
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
+                    paisActual, usuario, contra);
+            System.out.println("Salio de servicio");
         }
         return x;
     }

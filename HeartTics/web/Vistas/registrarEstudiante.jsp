@@ -8,7 +8,7 @@
 <%@page import="ClasesDTO.TipoDocumento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:useBean id="servicio" scope="page" class="Controlador.Servicio" />
+<jsp:useBean id="controlador" scope="session" class="Controlador.Servicio" />
 
 <html>
     <head>
@@ -25,7 +25,7 @@
     </head>
     <body>
         <%
-            ArrayList<TipoDocumento> documentos = servicio.cargarDocumentos();
+            ArrayList<TipoDocumento> documentos = controlador.cargarDocumentos();
         %>
         <div class="row">
             <div class="col-md-3 col-md-offset-4"><h1>Registrar Estudiante</h1></div>
