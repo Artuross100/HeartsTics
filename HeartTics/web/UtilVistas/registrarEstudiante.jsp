@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <jsp:useBean id="controlador" scope="session" class="Controlador.Servicio" />
 <%
+    request.setCharacterEncoding("UTF-8");
     String nombre= request.getParameter("nombre");
     String apellido = request.getParameter("apellido");
     String tipoDoc= request.getParameter("tipoDoc");

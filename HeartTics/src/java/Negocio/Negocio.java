@@ -5,11 +5,13 @@
  */
 package Negocio;
 
+import ClasesDTO.Estudiante;
 import ClasesDTO.TipoDocumento;
 import Fachada.INegocio;
 import FactoryBD.DaoFactory;
 import InterfazDatos.IUsuarioDao;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,6 +46,17 @@ public class Negocio implements INegocio {
         }
         return true;
 
+    }
+
+    @Override
+    public ArrayList<Estudiante> listarEstudiantes() {
+        try {
+            IUsuarioDao user= this.factory.getUsuario();
+            return user.listarEstudiantes();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package MySQLDao;
 
+import ClasesDTO.Estudiante;
 import ClasesDTO.TipoDocumento;
 import InterfazDatos.IUsuarioDao;
 import Util.Conexion;
@@ -12,9 +13,8 @@ import Util.Encriptador;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,9 +23,9 @@ import java.util.logging.Logger;
 public class UsuarioDao implements IUsuarioDao {
 
     private Conexion conexion;
-    
-    public UsuarioDao() throws SQLException{
-        this.conexion=new Conexion();
+
+    public UsuarioDao() throws SQLException {
+        this.conexion = new Conexion();
     }
 
     @Override
@@ -78,7 +78,7 @@ public class UsuarioDao implements IUsuarioDao {
             stmt.setString(19, usuario);
             stmt.setString(20, pass);
             boolean rs = stmt.execute();
-            stmt2.setInt(1, (int)id);
+            stmt2.setInt(1, (int) id);
             stmt2.setInt(2, 1);
             boolean con2 = stmt2.execute();
             stmt.close();
@@ -104,4 +104,51 @@ public class UsuarioDao implements IUsuarioDao {
         return true;
     }
 
+    public ArrayList<Estudiante> listarEstudiantes() throws SQLException {
+        String consulta = "", consulta2="";
+        consulta = "SELECT * FROM Usuario";
+        ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
+        PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
+        ResultSet rs = stmt.executeQuery();
+        int d = 0, grupo = 0;
+        String codigo = "";
+        String curso = "";
+        char letra=0;
+        while (rs.next()) {
+            d = rs.getInt("idUsuario");
+            consulta2 = "SELECT * FROM Usuario, Estudiante WHERE"
+                    + " Usuario.idUsuario=Estudiante.idUsuario";
+            PreparedStatement stmt2 = this.conexion.getConexion().prepareStatement(consulta2);
+            ResultSet rs2 = stmt2.executeQuery();
+            while (rs2.next()) {
+                grupo = rs2.getInt("idGrupo");
+                curso = rs2.getString("idCurso");
+                codigo = rs2.getString("codigo");
+                if(curso!=null){
+                    letra=curso.charAt(0);
+                }
+            }
+            estudiantes.add(new Estudiante(obtenerTipoDoc(rs.getInt("idTipoDocumento")), rs.getString("numDoc"),
+                    rs.getString("correo"), rs.getDate("fechaNacimiento"),
+                    rs.getString("tipoSangre"), rs.getString("ciudadActual"),
+                    rs.getString("departamentoActual"), rs.getString("genero"),
+                    rs.getString("eps"), rs.getString("nombres"), rs.getString("apellidos"),
+                    rs.getString("telefono"), rs.getString("ciudadNacimiento"),
+                    rs.getString("departamentoNacimiento"), rs.getString("paisNacimiento"),
+                    rs.getString("paisActual"), rs.getString("nombreUsuario"), rs.getString("contra"), grupo, letra, codigo));
+        }
+
+        return estudiantes;
+    }
+
+    private TipoDocumento obtenerTipoDoc(int tipo) throws SQLException {
+        TipoDocumentoDao tDao= new TipoDocumentoDao();
+        ArrayList<TipoDocumento> tipos = tDao.cargarTiposDocumento();
+        for(TipoDocumento t:tipos){
+            if(t.getIdTipoDoc()==tipo){
+                return t;
+            }
+        }
+        return null;
+    }
 }

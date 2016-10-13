@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import ClasesDTO.Estudiante;
 import ClasesDTO.TipoDocumento;
 import Fachada.INegocio;
 import Fachada.INegocioUtil;
@@ -43,12 +44,10 @@ public class Servicio {
         boolean x = true;
         TipoDocumento t = this.buscarDocumento(tipoDoc);
         if (t != null) {
-            System.out.println("Entro a servicio");
             x = this.negocio.registrarEstudiante(t, numDoc, correo, fechaNacimiento, 
                     tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
                     apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
                     paisActual, usuario, contra);
-            System.out.println("Salio de servicio");
         }
         return x;
     }
@@ -60,6 +59,10 @@ public class Servicio {
             }
         }
         return null;
+    }
+    
+    public ArrayList<Estudiante> listarEstudiantes(){
+        return this.negocio.listarEstudiantes();
     }
 
 }

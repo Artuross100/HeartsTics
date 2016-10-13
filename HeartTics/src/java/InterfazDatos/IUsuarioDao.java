@@ -5,7 +5,10 @@
  */
 package InterfazDatos;
 
+import ClasesDTO.Estudiante;
 import ClasesDTO.TipoDocumento;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -20,4 +23,6 @@ public interface IUsuarioDao {
             String nombres, String apellidos, String telefono, String ciudadNacimiento,
             String departamentoNacimiento, String paisNacimiento, String paisActual,
             String usuario, String contra);
+    
+    public ArrayList<Estudiante> listarEstudiantes() throws SQLException;
 }
