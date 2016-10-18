@@ -4,6 +4,8 @@
  */
 package MySQLDao;
 
+import InterfazDatos.IAcudienteDao;
+
 /**
  *
  * @author Andrea

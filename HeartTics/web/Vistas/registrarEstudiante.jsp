@@ -4,6 +4,7 @@
     Author     : estudiante
 --%>
 
+<%@page import="ClasesDTO.Curso"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ClasesDTO.TipoDocumento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,6 +27,7 @@
     <body>
         <%
             ArrayList<TipoDocumento> documentos = controlador.cargarDocumentos();
+            ArrayList<Curso> cursos = controlador.listarCursos();
         %>
         <div class="row">
             <div class="col-md-6 col-md-offset-4"><h1>Registrar Estudiante</h1></div>
@@ -57,16 +59,25 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>NÃºmero De Documento</label>
-                        <input type="text" name="numDoc" value="" placeholder="NÃºmero de Documento" class="form-control" required/>
+                        <label>Número De Documento</label>
+                        <input type="text" name="numDoc" value="" placeholder="Nùmero de Documento" class="form-control" required/>
                     </div>
                     <div class="form-group">
-                        <label>Correo ElectrÃ³nico</label>
-                        <input type="email" name="correo" value="" placeholder="Correo ElectrÃ³nico" class="form-control"/>
+                        <label>Correo Electrónico</label>
+                        <input type="email" name="correo" value="" placeholder="Correo Electrònico" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>Fecha de Nacimiento</label>
                         <input type="date" name="fechaNacimiento" value="" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Género</label>
+                        <select name="genero"  class="form-control">
+                            <option value="">Seleccione el género del estudiante</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-4">
@@ -86,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         <label>Ciudad de Nacimiento</label>
-                        <input type="text" name="ciudadNacimiento" value="CÃºcuta" class="form-control" />
+                        <input type="text" name="ciudadNacimiento" value="Cúcuta" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Departamento de Nacimiento</label>
@@ -98,42 +109,41 @@
                     </div>
                     <div class="form-group">
                         <label>Ciudad Actual</label>
-                        <input type="text" name="ciudadActual" value="CÃºcuta" class="form-control" />
+                        <input type="text" name="ciudadActual" value="Cúcuta" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Departamento Actual</label>
                         <input type="text" name="departamentoActual" value="Norte de Santander" class="form-control" />
                     </div>
-                </div>
-                <div class="col-xs-6 col-sm-4">
                     <div class="form-group">
                         <label>Pais Actual</label>
                         <input type="text" name="paisActual" value="Colombia" class="form-control" />
                     </div>
-                    <div class="form-group">
-                        <label>GÃ©nero</label>
-                        <select name="genero"  class="form-control">
-                            <option value="">Seleccione el gÃ©nero del estudiante</option>
-                            <option value="Femenino">Femenino</option>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Otro">Otro</option>
-                        </select>
-                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-4">
                     <div class="form-group">
                         <label>EPS o ARS</label>
                         <input type="text" name="eps" value="" class="form-control" placeholder="EPS o ARS afiliado" />
                     </div>
                     <div class="form-group">
-                        <label>TelÃ©fono</label>
+                        <label>Teléfono</label>
                         <input type="text" name="telefono" value="" class="form-control" placeholder="3001234567-5802222" />
+                    </div>
+                    <div class="form-group">
+                        <label>Grupo</label>
+                        <select name="grupo" class="form-control">
+                            <%for (Curso c : cursos) {%>
+                            <option value="<%=c.getIdCurso()%>"><%=c.getIdCurso()%></option>
+                            <%}%>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Usuario</label>
                         <input type="text" name="usuario" value="" class="form-control" placeholder="Nombre de usuario" />
                     </div>
                     <div class="form-group">
-                        <label>ContraseÃ±a</label>
-                        <input type="password" name="contra" value="" class="form-control" placeholder="MÃ­nimo 6 carÃ¡cteres" />
+                        <label>Contraseña</label>
+                        <input type="password" name="contra" value="" class="form-control" placeholder="Mínimo 6 carácteres" />
                     </div>
                 </div>
                 <div class="clear-fix"></div>

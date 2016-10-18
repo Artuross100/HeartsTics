@@ -22,7 +22,7 @@ public interface IUsuarioDao {
             String departamentoActual, String genero, String eps,
             String nombres, String apellidos, String telefono, String ciudadNacimiento,
             String departamentoNacimiento, String paisNacimiento, String paisActual,
-            String usuario, String contra);
+            String usuario, String contra, int tipoU);
     
     public ArrayList<Estudiante> listarEstudiantes() throws SQLException;
 }

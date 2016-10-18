@@ -11,7 +11,7 @@
 <%
     String nombre =  request.getParameter("nombre");
     boolean a = controlador.registrarDocumento(nombre);
-    if(a){%>
+    if(!a){%>
     <script type="text/javascript">
         alert("Registro exitoso");
     </script>
@@ -21,5 +21,5 @@
     </script>
     <%}%>
     <script type="text/javascript">
-        window.location.href="../Vistas/gestionarTipoDocumento";
+        window.location.href="../Vistas/gestionarTipoDocumento.jsp";
     </script>

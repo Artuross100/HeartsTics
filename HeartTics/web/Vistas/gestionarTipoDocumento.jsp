@@ -45,30 +45,30 @@
                     <div class="col-md-6 col-md-offset-4"><h1>Documentos Disponibles</h1></div>
                 </div>
             </div>
-            <div class="col-md-7 col-md-offset-3">
-                <div class="table-responsive">
-                    <form id="frmEliminarTipoDoc" action="../UtilVistas/eliminarTipoDoc.jsp" method="post">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>Tipo de Documento</th>
-                                <th>Eliminar</th>
-                            </tr>
-                            <%for (TipoDocumento e : documentos) {%>
-                            <tr>
-                                <td><%=e.getNombreDoc()%></td>
-                                <td><div class="checkbox">
-                                        <label>
-                                            <input name="eliminar" type="checkbox" value="<%=e.getIdTipoDoc()%>"/> Eliminar
-                                        </label>
-                                    </div></td>
-
-                            </tr>
-                            <%}%>
-                        </table>
-                        <input type="submit" name="guardarCambios" value="Eliminar" class="btn btn-warning"/>Eliminar
-                    </form>
-                </div>
-            </div>
         </form>
+        <div class="col-md-7 col-md-offset-3">
+            <div class="table-responsive">
+                <form id="frmEliminarTipoDoc" action="../UtilVistas/eliminarTipoDoc.jsp" method="post">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Tipo de Documento</th>
+                            <th>Eliminar</th>
+                        </tr>
+                        <%for (TipoDocumento e : documentos) {%>
+                        <tr>
+                            <td><%=e.getNombreDoc()%></td>
+                            <td><div class="checkbox">
+                                    <label>
+                                        <input name="eliminar" type="checkbox" value="<%=e.getIdTipoDoc()%>"/> Eliminar
+                                    </label>
+                                </div></td>
+
+                        </tr>
+                        <%}%>
+                    </table>
+                    <input type="submit" name="guardarCambios" value="Eliminar" class="btn btn-warning"/>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

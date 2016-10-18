@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.ArrayList;
 import Fachada.*;
 import ClasesDTO.*;
+import Negocio.Negocio;
+import Negocio.NegocioUtil;
 /**
  *
  * @author estudiante
@@ -31,19 +33,24 @@ public class Servicio {
         return tipos;
     }
 
+    public ArrayList<Curso> listarCursos(){
+        return this.negocioUtil.listarCursos();
+    }
+    
     public boolean registrarUsuario(int tipoDoc, String numDoc, String correo,
             Date fechaNacimiento, String tipoSangre, String ciudadActual,
             String departamentoActual, String genero, String eps, String nombres,
             String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento,
-            String paisNacimiento, String paisActual, String usuario, String contra) {
+            String paisNacimiento, String paisActual, String usuario, String contra, int grupo) {
 
         boolean x = true;
         TipoDocumento t = this.buscarDocumento(tipoDoc);
+        System.out.println(t.getNombreDoc()+" NombreDoc");
         if (t != null) {
             x = this.negocio.registrarEstudiante(t, numDoc, correo, fechaNacimiento, 
                     tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
                     apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
-                    paisActual, usuario, contra);
+                    paisActual, usuario, contra, grupo);
         }
         return x;
     }
@@ -66,7 +73,7 @@ public class Servicio {
     }
 
     public String eliminarTipoDoc(String []eliminar){
-        return this.negocioUtil.eliminarTipodoc(eliminar);
+        return this.negocioUtil.eliminarTipoDoc(eliminar);
     }
     
     public boolean registrarDocente(int tipoDoc, String numDoc, String correo,
@@ -85,5 +92,9 @@ public class Servicio {
         }
         return x;
         
+    }
+    
+    public ArrayList<Docente> listarDocentes(){
+        return this.negocioUtil.listarDocentes();
     }
 }

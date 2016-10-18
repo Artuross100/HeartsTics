@@ -5,6 +5,8 @@
  */
 package Fachada;
 
+import ClasesDTO.Curso;
+import ClasesDTO.Docente;
 import ClasesDTO.TipoDocumento;
 import java.util.ArrayList;
 
@@ -19,5 +21,9 @@ public interface INegocioUtil {
     public boolean registrarDocumento(String nombre);
     
     public String eliminarTipoDoc(String []eliminar);
+    
+    public ArrayList<Curso> listarCursos();
+    
+    public ArrayList<Docente> listarDocentes();
     
 }

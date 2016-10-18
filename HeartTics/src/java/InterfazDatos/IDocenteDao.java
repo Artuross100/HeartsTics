@@ -4,10 +4,17 @@
  */
 package InterfazDatos;
 
+import ClasesDTO.Docente;
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrea
  */
 public interface IDocenteDao {
+    
+    public boolean registrarDocente(int tipo);
+    
+    public ArrayList<Docente> listarDocentes();
     
 }

@@ -4,6 +4,8 @@
  */
 package MySQLDao;
 
+import InterfazDatos.IMateriaDao;
+
 /**
  *
  * @author Andrea

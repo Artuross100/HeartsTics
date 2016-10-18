@@ -12,8 +12,8 @@ import java.sql.Date;
  * @author estudiante
  */
 public class Usuario {
-    
-     private int idUsuario;
+
+    private int idUsuario;
     private int idTipoUsuario;
     private TipoDocumento tipoDoc;
     private String numDoc;
@@ -56,7 +56,6 @@ public class Usuario {
         this.usuario = usuario;
         this.contra = contra;
     }
-    
 
     //METODOS GETTER AND SETTER
     public int getIdUsuario() {
@@ -237,11 +236,11 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return  tipoDoc.getNombreDoc() + numDoc + correo + fechaNacimiento
+        return tipoDoc.getNombreDoc() + numDoc + correo + fechaNacimiento
                 + foto + tipoSangre + ciudadActual
                 + departamentoActual + genero + eps + nombres + apellidos
                 + telefono + fechaActualizacion + ciudadNacimiento
                 + departamentoNacimiento + paisNacimiento + paisActual + usuario;
     }
-    
+
 }

@@ -23,7 +23,7 @@ public class DaoFactory {
     }
     
     public EstudianteDao getEstudiante() throws SQLException{
-        return new Estudiante Dao();
+        return new EstudianteDao();
     }
     
     public AcudienteDao getAcudiente() throws SQLException{
@@ -36,5 +36,9 @@ public class DaoFactory {
     
     public MateriaDao getMateria () throws SQLException{
         return new MateriaDao();
+    }
+    
+    public CursoDao getCurso () throws SQLException{
+        return new CursoDao();
     }
 }

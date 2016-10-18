@@ -10,4 +10,6 @@ package InterfazDatos;
  */
 public interface IEstudianteDao {
     
+    public boolean registrarEstudiante(int id, int grupo);
+    
 }

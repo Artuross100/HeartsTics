@@ -51,7 +51,7 @@ public class TipoDocumentoDao implements ITipoDocumentoDao {
     public boolean registrarDocumento(String nombre){
         String consulta = "INSERT INTO TipoDocumento (nombre) VALUES(?)";
         try{
-            PreparedStatement stmt = this.conexion.getConexion().prpareStatement(consulta);
+            PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
             stmt.setString(1,nombre);
             boolean rs = stmt.execute();
             stmt.close();
@@ -62,4 +62,25 @@ public class TipoDocumentoDao implements ITipoDocumentoDao {
         }
         return false;
     }
+
+    @Override
+    public boolean eliminar(String doc) {
+        String consulta = "DELETE FROM TipoDocumento where idTipoDocumento=?";
+        
+        boolean a;
+        try{
+            this.conexion=new Conexion();
+            PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
+            stmt.setInt(1, Integer.parseInt(doc));
+            a = stmt.execute();
+            stmt.close();
+            this.conexion.close();
+            return a;            
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    
 }

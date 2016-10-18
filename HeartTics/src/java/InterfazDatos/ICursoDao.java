@@ -5,18 +5,15 @@
  */
 package InterfazDatos;
 
-import ClasesDTO.TipoDocumento;
+import ClasesDTO.Curso;
 import java.util.ArrayList;
 
 /**
  *
- * @author estudiante
+ * @author Estudiante
  */
-public interface ITipoDocumentoDao {
+public interface ICursoDao {
     
-    public ArrayList<TipoDocumento> cargarTiposDocumento();
+    public ArrayList<Curso> listarCursos();
     
-    public boolean registrarDocumento(String nombre);
-    
-    public boolean eliminar(String doc);
 }

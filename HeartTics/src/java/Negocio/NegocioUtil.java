@@ -5,9 +5,13 @@
  */
 package Negocio;
 
+import ClasesDTO.Curso;
+import ClasesDTO.Docente;
 import ClasesDTO.TipoDocumento;
 import Fachada.INegocioUtil;
 import FactoryBD.DaoFactory;
+import InterfazDatos.ICursoDao;
+import InterfazDatos.IDocenteDao;
 import InterfazDatos.ITipoDocumentoDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,56 +22,79 @@ import java.util.logging.Logger;
  *
  * @author estudiante
  */
-public class NegocioUtil implements INegocioUtil{
-    
+public class NegocioUtil implements INegocioUtil {
+
     private DaoFactory factory;
-    
-    public NegocioUtil(){
+
+    public NegocioUtil() {
         this.factory = new DaoFactory();
     }
 
     @Override
     public ArrayList<TipoDocumento> cargarTiposDocumento() {
 
-       ITipoDocumentoDao tipo = null;
+        ITipoDocumentoDao tipo = null;
         try {
             tipo = this.factory.getTipoDocumento();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-       return tipo.cargarTiposDocumento();
-        
+        return tipo.cargarTiposDocumento();
+
     }
-    
-    public boolean registrarDocumento(String nombre){
-        
-        try{
+
+    @Override
+    public boolean registrarDocumento(String nombre) {
+
+        try {
             ITipoDocumentoDao tipo = this.factory.getTipoDocumento();
             return tipo.registrarDocumento(nombre);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
     }
-    
-    public String eliminarTipoDoc(String []eliminar){
-        String rts="";
-        int c=0;
-        
-        try{
+
+    @Override
+    public String eliminarTipoDoc(String[] eliminar) {
+        String rts = "Los cambios se realizaron con éxito";
+        int c = 0;
+        try {
             ITipoDocumentoDao tipo = this.factory.getTipoDocumento();
-            for(String doc:eliminar){
-                if(!tipo.eliminar(doc)){
+            for (String doc : eliminar) {
+                if (tipo.eliminar(doc)) {
                     c++;
                 }
             }
-            if(c>0){
-               rts="Error al eliminar algunos documentos"; 
+            if (c > 0) {
+                rts = "Error al eliminar algunos documentos";
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return "Error al intentar eliminar";
         }
-        return "Los cambios se realizaron con éxito";
+        return rts;
+    }
+
+    @Override
+    public ArrayList<Curso> listarCursos() {
+        try {
+            ICursoDao curso = this.factory.getCurso();
+            return curso.listarCursos();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public ArrayList<Docente> listarDocentes() {
+        try{
+            IDocenteDao doc = this.factory.getDocente();
+            return doc.listarDocentes();
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

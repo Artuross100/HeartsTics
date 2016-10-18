@@ -113,7 +113,7 @@
                     <div class="form-group">
                         <label>Género</label>
                         <select name="genero"  class="form-control">
-                            <option value="">Seleccione el género del estudiante</option>
+                            <option value="">Seleccione el género del docente</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Otro">Otro</option>

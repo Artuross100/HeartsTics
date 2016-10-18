@@ -21,7 +21,7 @@ public interface INegocio {
                 String departamentoActual, String genero, String eps, 
                 String nombres, String apellidos, String telefono, String ciudadNacimiento, 
                 String departamentoNacimiento, String paisNacimiento, String paisActual, 
-                String usuario, String contra);
+                String usuario, String contra, int grupo);
      
      public ArrayList<Estudiante> listarEstudiantes();
      

@@ -33,7 +33,7 @@ public class UsuarioDao implements IUsuarioDao {
             String correo, Date fechaNacimiento, String tipoSangre, String ciudadActual,
             String departamentoActual, String genero, String eps, String nombres,
             String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento,
-            String paisNacimiento, String paisActual, String usuario, String contra) {
+            String paisNacimiento, String paisActual, String usuario, String contra, int tipoU) {
 
         String pass = Encriptador.encriptar(contra);
 
@@ -42,7 +42,7 @@ public class UsuarioDao implements IUsuarioDao {
                 + "genero ,eps ,nombres ,apellidos,telefono,ciudadNacimiento ,"
                 + "departamentoNacimiento ,paisNacimiento ,paisActual, nombreUsuario, contra)"
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        
+
         String consulta3 = "SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ufps_6' AND TABLE_NAME  = 'Usuario'";
 
         try {
@@ -57,7 +57,7 @@ public class UsuarioDao implements IUsuarioDao {
             this.conexion.getConexion().setAutoCommit(false);
             PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
             stmt.setInt(1, tipoDoc.getIdTipoDoc());
-            stmt.setInt(2, 1);
+            stmt.setInt(2, tipoU);
             stmt.setString(3, numDoc);
             stmt.setString(4, correo);
             stmt.setDate(5, new java.sql.Date(fechaNacimiento.getTime()));
@@ -77,12 +77,12 @@ public class UsuarioDao implements IUsuarioDao {
             stmt.setString(19, usuario);
             stmt.setString(20, pass);
             boolean rs = stmt.execute();
-            
+
             stmt.close();
             state.close();
             this.conexion.close();
-            if (id!=0 && rs) {
-                return (int)id;
+            if (id != 0 && !rs) {
+                return (int) id;
             }
         } catch (SQLException ex) {
             if (this.conexion.getConexion() != null) {
@@ -101,47 +101,43 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     public ArrayList<Estudiante> listarEstudiantes() throws SQLException {
-        String consulta = "", consulta2="";
-        consulta = "SELECT * FROM Usuario";
+        String consulta2 = "";
         ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
-        PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
-        ResultSet rs = stmt.executeQuery();
         int d = 0, grupo = 0;
         String codigo = "";
         String curso = "";
-        char letra=0;
-        while (rs.next()) {
-            d = rs.getInt("idUsuario");
-            consulta2 = "SELECT * FROM Usuario, Estudiante WHERE"
-                    + " Usuario.idUsuario=Estudiante.idUsuario";
-            PreparedStatement stmt2 = this.conexion.getConexion().prepareStatement(consulta2);
-            ResultSet rs2 = stmt2.executeQuery();
-            while (rs2.next()) {
-                grupo = rs2.getInt("idGrupo");
-                curso = rs2.getString("idCurso");
-                codigo = rs2.getString("codigo");
-                if(curso!=null){
-                    letra=curso.charAt(0);
-                }
+        char letra = 0;
+        consulta2 = "SELECT * FROM Usuario, Estudiante WHERE"
+                + " Usuario.idUsuario=Estudiante.idUsuario";
+        PreparedStatement stmt2 = this.conexion.getConexion().prepareStatement(consulta2);
+        ResultSet rs2 = stmt2.executeQuery();
+        while (rs2.next()) {
+            grupo = rs2.getInt("idGrupo");
+            curso = rs2.getString("idCurso");
+            codigo = rs2.getString("codigo");
+            if (curso != null) {
+                letra = curso.charAt(0);
             }
-            estudiantes.add(new Estudiante(obtenerTipoDoc(rs.getInt("idTipoDocumento")), rs.getString("numDoc"),
-                    rs.getString("correo"), rs.getDate("fechaNacimiento"),
-                    rs.getString("tipoSangre"), rs.getString("ciudadActual"),
-                    rs.getString("departamentoActual"), rs.getString("genero"),
-                    rs.getString("eps"), rs.getString("nombres"), rs.getString("apellidos"),
-                    rs.getString("telefono"), rs.getString("ciudadNacimiento"),
-                    rs.getString("departamentoNacimiento"), rs.getString("paisNacimiento"),
-                    rs.getString("paisActual"), rs.getString("nombreUsuario"), rs.getString("contra"), grupo, letra, codigo));
+            estudiantes.add(new Estudiante(obtenerTipoDoc(rs2.getInt("idTipoDocumento")),
+                    rs2.getString("numDoc"),
+                    rs2.getString("correo"), rs2.getDate("fechaNacimiento"),
+                    rs2.getString("tipoSangre"), rs2.getString("ciudadActual"),
+                    rs2.getString("departamentoActual"), rs2.getString("genero"),
+                    rs2.getString("eps"), rs2.getString("nombres"), rs2.getString("apellidos"),
+                    rs2.getString("telefono"), rs2.getString("ciudadNacimiento"),
+                    rs2.getString("departamentoNacimiento"), rs2.getString("paisNacimiento"),
+                    rs2.getString("paisActual"), rs2.getString("nombreUsuario"), rs2.getString("contra"),
+                    grupo, letra, codigo));
         }
 
         return estudiantes;
     }
 
     private TipoDocumento obtenerTipoDoc(int tipo) throws SQLException {
-        TipoDocumentoDao tDao= new TipoDocumentoDao();
+        TipoDocumentoDao tDao = new TipoDocumentoDao();
         ArrayList<TipoDocumento> tipos = tDao.cargarTiposDocumento();
-        for(TipoDocumento t:tipos){
-            if(t.getIdTipoDoc()==tipo){
+        for (TipoDocumento t : tipos) {
+            if (t.getIdTipoDoc() == tipo) {
                 return t;
             }
         }
