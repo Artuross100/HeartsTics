@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public interface IUsuarioDao {
     
-    public boolean registrarEstudiante(TipoDocumento tipoDoc, String numDoc, String correo,
+    public int registrarUsuario(TipoDocumento tipoDoc, String numDoc, String correo,
             Date fechaNacimiento, String tipoSangre, String ciudadActual,
             String departamentoActual, String genero, String eps,
             String nombres, String apellidos, String telefono, String ciudadNacimiento,

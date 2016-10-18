@@ -9,6 +9,7 @@ import ClasesDTO.Estudiante;
 import ClasesDTO.TipoDocumento;
 import Fachada.INegocio;
 import FactoryBD.DaoFactory;
+import InterfazDatos.IEstudianteDao;
 import InterfazDatos.IUsuarioDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,10 +35,31 @@ public class Negocio implements INegocio {
             String departamentoActual, String genero, String eps,
             String nombres, String apellidos, String telefono, String ciudadNacimiento,
             String departamentoNacimiento, String paisNacimiento, String paisActual, String usuario, String contra) {
+        int a = 0;
+        try {
+            IUsuarioDao user = this.factory.getUsuario();
+            IEstudianteDao est = this.factory.getEstudiante();
+            a= user.registrarUsuario(tipoDoc, numDoc, correo, fechaNacimiento, 
+                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
+                    paisActual, usuario, contra);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return true;
+
+    }
+    
+    @Override
+    public boolean registrarDocente(TipoDocumento tipoDoc, String numDoc, String correo,
+            Date fechaNacimiento, String tipoSangre, String ciudadActual,
+            String departamentoActual, String genero, String eps,
+            String nombres, String apellidos, String telefono, String ciudadNacimiento,
+            String departamentoNacimiento, String paisNacimiento, String paisActual, String usuario, String contra) {
         
         try {
             IUsuarioDao user = this.factory.getUsuario();
-            return user.registrarEstudiante(tipoDoc, numDoc, correo, fechaNacimiento, 
+            return user.registrarDocente(tipoDoc, numDoc, correo, fechaNacimiento, 
                     tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
                     apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
                     paisActual, usuario, contra);

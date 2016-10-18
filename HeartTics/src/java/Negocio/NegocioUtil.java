@@ -39,4 +39,35 @@ public class NegocioUtil implements INegocioUtil{
         
     }
     
+    public boolean registrarDocumento(String nombre){
+        
+        try{
+            ITipoDocumentoDao tipo = this.factory.getTipoDocumento();
+            return tipo.registrarDocumento(nombre);
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    public String eliminarTipoDoc(String []eliminar){
+        String rts="";
+        int c=0;
+        
+        try{
+            ITipoDocumentoDao tipo = this.factory.getTipoDocumento();
+            for(String doc:eliminar){
+                if(!tipo.eliminar(doc)){
+                    c++;
+                }
+            }
+            if(c>0){
+               rts="Error al eliminar algunos documentos"; 
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+            return "Error al intentar eliminar";
+        }
+        return "Los cambios se realizaron con éxito";
+    }
 }

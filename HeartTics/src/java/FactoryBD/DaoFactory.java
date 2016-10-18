@@ -21,4 +21,20 @@ public class DaoFactory {
     public UsuarioDao getUsuario() throws SQLException{
         return new UsuarioDao();
     }
+    
+    public EstudianteDao getEstudiante() throws SQLException{
+        return new Estudiante Dao();
+    }
+    
+    public AcudienteDao getAcudiente() throws SQLException{
+        return new AcudienteDao();
+    }
+    
+    public DocenteDao getDocente() throws SQLException{
+        return new DocenteDao();
+    }
+    
+    public MateriaDao getMateria () throws SQLException{
+        return new MateriaDao();
+    }
 }

@@ -29,7 +29,7 @@ public class TipoDocumentoDao implements ITipoDocumentoDao {
     
     @Override
     public ArrayList<TipoDocumento> cargarTiposDocumento() {
-        ArrayList<TipoDocumento> tipos=new ArrayList<>();
+        ArrayList<TipoDocumento> tipos=new ArrayList<TipoDocumento>();
         String consulta= "SELECT * FROM TipoDocumento";
         try {
             PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
@@ -41,12 +41,25 @@ public class TipoDocumentoDao implements ITipoDocumentoDao {
             stmt.close();
             this.conexion.close();
         } catch (SQLException ex) {
-            Logger.getLogger(TipoDocumentoDao.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            return null;
         }
        
         return tipos;
     }
-    /*
-    
-    */
+    @Override
+    public boolean registrarDocumento(String nombre){
+        String consulta = "INSERT INTO TipoDocumento (nombre) VALUES(?)";
+        try{
+            PreparedStatement stmt = this.conexion.getConexion().prpareStatement(consulta);
+            stmt.setString(1,nombre);
+            boolean rs = stmt.execute();
+            stmt.close();
+            this.conexion.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : registrarEstudiante
-    Created on : 12-oct-2016, 14:08:57
-    Author     : estudiante
+    Document   : registrarDocente
+    Created on : 15/10/2016, 08:40:03 PM
+    Author     : Andrea
 --%>
 
 <%@page import="java.util.ArrayList"%>
@@ -14,11 +14,11 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- VersiÃ³n compilada y comprimida del CSS de Bootstrap -->
+        <!-- Versión compilada y comprimida del CSS de Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <!-- Tema opcional -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-        <!-- VersiÃ³n compilada y comprimida del JavaScript de Bootstrap -->
+        <!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <title>Hearts Tics</title>
 
@@ -28,11 +28,11 @@
             ArrayList<TipoDocumento> documentos = controlador.cargarDocumentos();
         %>
         <div class="row">
-            <div class="col-md-6 col-md-offset-4"><h1>Registrar Estudiante</h1></div>
+            <div class="col-md-6 col-md-offset-4"><h1>Registrar Docentes</h1></div>
         </div>
 
 
-        <form id="frmRegistrarEstudiante" action="../UtilVistas/registrarEstudiante.jsp">
+        <form id="frmRegistrarEstudiante" action="../UtilVistas/registrarDocente.jsp">
 
             <div class="row">
                 <div class="col-xs-6 col-sm-4">
@@ -57,12 +57,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>NÃºmero De Documento</label>
-                        <input type="text" name="numDoc" value="" placeholder="NÃºmero de Documento" class="form-control" required/>
+                        <label>Número De Documento</label>
+                        <input type="text" name="numDoc" value="" placeholder="Número de Documento" class="form-control" required/>
                     </div>
                     <div class="form-group">
-                        <label>Correo ElectrÃ³nico</label>
-                        <input type="email" name="correo" value="" placeholder="Correo ElectrÃ³nico" class="form-control"/>
+                        <label>Correo Electrónico</label>
+                        <input type="email" name="correo" value="" placeholder="Correo Electrónico" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>Fecha de Nacimiento</label>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-group">
                         <label>Ciudad de Nacimiento</label>
-                        <input type="text" name="ciudadNacimiento" value="CÃºcuta" class="form-control" />
+                        <input type="text" name="ciudadNacimiento" value="Cúcuta" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Departamento de Nacimiento</label>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="form-group">
                         <label>Ciudad Actual</label>
-                        <input type="text" name="ciudadActual" value="CÃºcuta" class="form-control" />
+                        <input type="text" name="ciudadActual" value="Cúcuta" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>Departamento Actual</label>
@@ -111,9 +111,9 @@
                         <input type="text" name="paisActual" value="Colombia" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label>GÃ©nero</label>
+                        <label>Género</label>
                         <select name="genero"  class="form-control">
-                            <option value="">Seleccione el gÃ©nero del estudiante</option>
+                            <option value="">Seleccione el género del estudiante</option>
                             <option value="Femenino">Femenino</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Otro">Otro</option>
@@ -124,7 +124,7 @@
                         <input type="text" name="eps" value="" class="form-control" placeholder="EPS o ARS afiliado" />
                     </div>
                     <div class="form-group">
-                        <label>TelÃ©fono</label>
+                        <label>Teléfono</label>
                         <input type="text" name="telefono" value="" class="form-control" placeholder="3001234567-5802222" />
                     </div>
                     <div class="form-group">
@@ -132,8 +132,8 @@
                         <input type="text" name="usuario" value="" class="form-control" placeholder="Nombre de usuario" />
                     </div>
                     <div class="form-group">
-                        <label>ContraseÃ±a</label>
-                        <input type="password" name="contra" value="" class="form-control" placeholder="MÃ­nimo 6 carÃ¡cteres" />
+                        <label>Contraseña</label>
+                        <input type="password" name="contra" value="" class="form-control" placeholder="Mínimo 6 carácteres" />
                     </div>
                 </div>
                 <div class="clear-fix"></div>

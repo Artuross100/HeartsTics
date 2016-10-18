@@ -13,5 +13,11 @@ import java.util.ArrayList;
  * @author estudiante
  */
 public interface INegocioUtil {
+    
     public ArrayList<TipoDocumento> cargarTiposDocumento();
+    
+    public boolean registrarDocumento(String nombre);
+    
+    public String eliminarTipoDoc(String []eliminar);
+    
 }

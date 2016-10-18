@@ -15,4 +15,6 @@ import java.util.ArrayList;
 public interface ITipoDocumentoDao {
     
     public ArrayList<TipoDocumento> cargarTiposDocumento();
+    
+    public boolean registrarDocumento(String nombre);
 }

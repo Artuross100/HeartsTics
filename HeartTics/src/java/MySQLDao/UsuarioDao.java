@@ -29,7 +29,7 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     @Override
-    public boolean registrarEstudiante(TipoDocumento tipoDoc, String numDoc,
+    public int registrarUsuario(TipoDocumento tipoDoc, String numDoc,
             String correo, Date fechaNacimiento, String tipoSangre, String ciudadActual,
             String departamentoActual, String genero, String eps, String nombres,
             String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento,
@@ -42,7 +42,7 @@ public class UsuarioDao implements IUsuarioDao {
                 + "genero ,eps ,nombres ,apellidos,telefono,ciudadNacimiento ,"
                 + "departamentoNacimiento ,paisNacimiento ,paisActual, nombreUsuario, contra)"
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        String consulta2 = "INSERT INTO Estudiante (idUsuario, estado) VALUES(?,?)";
+        
         String consulta3 = "SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ufps_6' AND TABLE_NAME  = 'Usuario'";
 
         try {
@@ -56,7 +56,6 @@ public class UsuarioDao implements IUsuarioDao {
             }
             this.conexion.getConexion().setAutoCommit(false);
             PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
-            PreparedStatement stmt2 = this.conexion.getConexion().prepareStatement(consulta2);
             stmt.setInt(1, tipoDoc.getIdTipoDoc());
             stmt.setInt(2, 1);
             stmt.setString(3, numDoc);
@@ -78,19 +77,15 @@ public class UsuarioDao implements IUsuarioDao {
             stmt.setString(19, usuario);
             stmt.setString(20, pass);
             boolean rs = stmt.execute();
-            stmt2.setInt(1, (int) id);
-            stmt2.setInt(2, 1);
-            boolean con2 = stmt2.execute();
+            
             stmt.close();
-            stmt2.close();
             state.close();
             this.conexion.close();
-            if (rs && con2) {
-                return false;
+            if (id!=0 && rs) {
+                return (int)id;
             }
         } catch (SQLException ex) {
             if (this.conexion.getConexion() != null) {
-
                 try {
                     System.err.println("Transacción Cancelada, Revirtiendo Cambios");
                     this.conexion.getConexion().rollback();
@@ -100,8 +95,9 @@ public class UsuarioDao implements IUsuarioDao {
                 }
                 ex.printStackTrace();
             }
+            return 0;
         }
-        return true;
+        return 0;
     }
 
     public ArrayList<Estudiante> listarEstudiantes() throws SQLException {

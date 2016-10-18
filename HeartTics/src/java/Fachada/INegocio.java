@@ -24,4 +24,11 @@ public interface INegocio {
                 String usuario, String contra);
      
      public ArrayList<Estudiante> listarEstudiantes();
+     
+     public boolean registrarDocente(TipoDocumento tipoDoc, String numDoc, String correo, 
+                Date fechaNacimiento, String tipoSangre, String ciudadActual, 
+                String departamentoActual, String genero, String eps, 
+                String nombres, String apellidos, String telefono, String ciudadNacimiento, 
+                String departamentoNacimiento, String paisNacimiento, String paisActual, 
+                String usuario, String contra);
 }

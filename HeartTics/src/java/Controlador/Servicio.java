@@ -5,15 +5,11 @@
  */
 package Controlador;
 
-import ClasesDTO.Estudiante;
-import ClasesDTO.TipoDocumento;
-import Fachada.INegocio;
-import Fachada.INegocioUtil;
-import Negocio.Negocio;
-import Negocio.NegocioUtil;
+
 import java.util.Date;
 import java.util.ArrayList;
-
+import Fachada.*;
+import ClasesDTO.*;
 /**
  *
  * @author estudiante
@@ -27,7 +23,7 @@ public class Servicio {
     public Servicio() {
         this.negocioUtil = new NegocioUtil();
         this.negocio = new Negocio();
-        this.tipos = new ArrayList<>();
+        this.tipos = new ArrayList<TipoDocumento>();
     }
 
     public ArrayList<TipoDocumento> cargarDocumentos() {
@@ -64,5 +60,30 @@ public class Servicio {
     public ArrayList<Estudiante> listarEstudiantes(){
         return this.negocio.listarEstudiantes();
     }
+    
+    public boolean registrarDocumento(String nombre){
+        return this.negocioUtil.registrarDocumento(nombre);
+    }
 
+    public String eliminarTipoDoc(String []eliminar){
+        return this.negocioUtil.eliminarTipodoc(eliminar);
+    }
+    
+    public boolean registrarDocente(int tipoDoc, String numDoc, String correo,
+            Date fechaNacimiento, String tipoSangre, String ciudadActual,
+            String departamentoActual, String genero, String eps, String nombres,
+            String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento,
+            String paisNacimiento, String paisActual, String usuario, String contra) {
+        
+        boolean x = true;
+        TipoDocumento t = this.buscarDocumento(tipoDoc);
+        if (t != null) {
+            x = this.negocio.registrarDocente(t, numDoc, correo, fechaNacimiento, 
+                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
+                    paisActual, usuario, contra);
+        }
+        return x;
+        
+    }
 }

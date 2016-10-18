@@ -11,11 +11,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Versión compilada y comprimida del CSS de Bootstrap -->
+        <!-- VersiÃ³n compilada y comprimida del CSS de Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <!-- Tema opcional -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
-        <!-- Versión compilada y comprimida del JavaScript de Bootstrap -->
+        <!-- VersiÃ³n compilada y comprimida del JavaScript de Bootstrap -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
         <title>Hearts Tics</title>
     </head>
@@ -31,7 +31,7 @@
             <table class="table table-hover">
                 <tr>
                     <th>Tipo de Documento</th>
-                    <th>Número de Documento</th>
+                    <th>NÃºmero de Documento</th>
                     <th>Nombre</th>
                     <th>Usuario</th>
                     <th>Curso</th>
@@ -46,7 +46,7 @@
                     <%if(e.getCurso()!=0){%>
                     <td><%=e.getGrupo()+" "+e.getCurso()%></td>
                     <%}else{%>
-                        <td>No está asignado a ningún grupo</td>
+                        <td>No estÃ¡ asignado a ningÃºn grupo</td>
                     <%}%>
                     <th><%=e.getCorreo()%></th>
                 </tr>
