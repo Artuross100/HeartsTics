@@ -94,6 +94,24 @@ public class Servicio {
         
     }
     
+    public boolean registrarAcudiente(int tipoDoc, String numDoc, String correo,
+            Date fechaNacimiento, String tipoSangre, String ciudadActual,
+            String departamentoActual, String genero, String eps, String nombres,
+            String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento,
+            String paisNacimiento, String paisActual, String usuario, String contra, long estudiante, String profesion) {
+        
+        boolean x = true;
+        TipoDocumento t = this.buscarDocumento(tipoDoc);
+        if (t != null) {
+            x = this.negocio.registrarAcudiente(t, numDoc, correo, fechaNacimiento, 
+                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
+                    paisActual, usuario, contra, estudiante, profesion);
+        }
+        return x;
+        
+    }
+    
     public ArrayList<Docente> listarDocentes(){
         return this.negocioUtil.listarDocentes();
     }

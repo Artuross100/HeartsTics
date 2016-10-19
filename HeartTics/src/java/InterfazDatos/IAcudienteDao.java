@@ -10,4 +10,5 @@ package InterfazDatos;
  */
 public interface IAcudienteDao {
     
+    public boolean registrarAcudiente(long a, long estudiante, String profesion);
 }

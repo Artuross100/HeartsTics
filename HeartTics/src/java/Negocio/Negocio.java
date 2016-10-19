@@ -9,6 +9,7 @@ import ClasesDTO.Estudiante;
 import ClasesDTO.TipoDocumento;
 import Fachada.INegocio;
 import FactoryBD.DaoFactory;
+import InterfazDatos.IAcudienteDao;
 import InterfazDatos.IDocenteDao;
 import InterfazDatos.IEstudianteDao;
 import InterfazDatos.IUsuarioDao;
@@ -40,10 +41,10 @@ public class Negocio implements INegocio {
         try {
             IUsuarioDao user = this.factory.getUsuario();
             IEstudianteDao est = this.factory.getEstudiante();
-            a= user.registrarUsuario(tipoDoc, numDoc, correo, fechaNacimiento, 
-                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
-                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
-                    paisActual, usuario, contra,1);
+            a = user.registrarUsuario(tipoDoc, numDoc, correo, fechaNacimiento,
+                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres,
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento,
+                    paisActual, usuario, contra, 1);
             return est.registrarEstudiante(a, grupo);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -51,23 +52,23 @@ public class Negocio implements INegocio {
         return true;
 
     }
-    
+
     @Override
     public boolean registrarDocente(TipoDocumento tipoDoc, String numDoc, String correo,
             Date fechaNacimiento, String tipoSangre, String ciudadActual,
             String departamentoActual, String genero, String eps,
             String nombres, String apellidos, String telefono, String ciudadNacimiento,
             String departamentoNacimiento, String paisNacimiento, String paisActual, String usuario, String contra) {
-        
-        int a=0;
-        
+
+        int a = 0;
+
         try {
             IUsuarioDao user = this.factory.getUsuario();
             IDocenteDao doc = this.factory.getDocente();
-            a = user.registrarUsuario(tipoDoc, numDoc, correo, fechaNacimiento, 
-                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres, 
-                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento, 
-                    paisActual, usuario, contra,2);
+            a = user.registrarUsuario(tipoDoc, numDoc, correo, fechaNacimiento,
+                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres,
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento,
+                    paisActual, usuario, contra, 2);
             return doc.registrarDocente(a);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -79,12 +80,30 @@ public class Negocio implements INegocio {
     @Override
     public ArrayList<Estudiante> listarEstudiantes() {
         try {
-            IUsuarioDao user= this.factory.getUsuario();
+            IUsuarioDao user = this.factory.getUsuario();
             return user.listarEstudiantes();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean registrarAcudiente(TipoDocumento tipoDoc, String numDoc, String correo, Date fechaNacimiento, String tipoSangre, String ciudadActual, String departamentoActual, String genero, String eps, String nombres, String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento, String paisActual, String usuario, String contra, long estudiante, String profesion) {
+        int a = 0;
+
+        try {
+            IUsuarioDao user = this.factory.getUsuario();
+            IAcudienteDao doc = this.factory.getAcudiente();
+            a = user.registrarUsuario(tipoDoc, numDoc, correo, fechaNacimiento,
+                    tipoSangre, ciudadActual, departamentoActual, genero, eps, nombres,
+                    apellidos, telefono, ciudadNacimiento, departamentoNacimiento, paisNacimiento,
+                    paisActual, usuario, contra, 2);
+            return doc.registrarAcudiente(a, estudiante, profesion);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return true;
     }
 
 }

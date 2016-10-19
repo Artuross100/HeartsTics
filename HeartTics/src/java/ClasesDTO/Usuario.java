@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Usuario {
 
-    private int idUsuario;
+    private long idUsuario;
     private int idTipoUsuario;
     private TipoDocumento tipoDoc;
     private String numDoc;
@@ -36,7 +36,8 @@ public class Usuario {
     private String usuario;
     private String contra;
 
-    public Usuario(TipoDocumento tipoDoc, String numDoc, String correo, Date fechaNacimiento, String tipoSangre, String ciudadActual, String departamentoActual, String genero, String eps, String nombres, String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento, String paisActual, String usuario, String contra) {
+    public Usuario(long idUsuario,TipoDocumento tipoDoc, String numDoc, String correo, Date fechaNacimiento, String tipoSangre, String ciudadActual, String departamentoActual, String genero, String eps, String nombres, String apellidos, String telefono, String ciudadNacimiento, String departamentoNacimiento, String paisNacimiento, String paisActual, String usuario, String contra) {
+        this.idUsuario = idUsuario;
         this.tipoDoc = tipoDoc;
         this.numDoc = numDoc;
         this.correo = correo;
@@ -58,11 +59,11 @@ public class Usuario {
     }
 
     //METODOS GETTER AND SETTER
-    public int getIdUsuario() {
+    public long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

@@ -31,4 +31,11 @@ public interface INegocio {
                 String nombres, String apellidos, String telefono, String ciudadNacimiento, 
                 String departamentoNacimiento, String paisNacimiento, String paisActual, 
                 String usuario, String contra);
+     
+     public boolean registrarAcudiente(TipoDocumento tipoDoc, String numDoc, String correo, 
+                Date fechaNacimiento, String tipoSangre, String ciudadActual, 
+                String departamentoActual, String genero, String eps, 
+                String nombres, String apellidos, String telefono, String ciudadNacimiento, 
+                String departamentoNacimiento, String paisNacimiento, String paisActual, 
+                String usuario, String contra, long estudiante, String profesion);
 }

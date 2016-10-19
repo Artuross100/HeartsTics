@@ -118,7 +118,7 @@ public class UsuarioDao implements IUsuarioDao {
             if (curso != null) {
                 letra = curso.charAt(0);
             }
-            estudiantes.add(new Estudiante(obtenerTipoDoc(rs2.getInt("idTipoDocumento")),
+            estudiantes.add(new Estudiante(rs2.getLong("idUsuario"),obtenerTipoDoc(rs2.getInt("idTipoDocumento")),
                     rs2.getString("numDoc"),
                     rs2.getString("correo"), rs2.getDate("fechaNacimiento"),
                     rs2.getString("tipoSangre"), rs2.getString("ciudadActual"),

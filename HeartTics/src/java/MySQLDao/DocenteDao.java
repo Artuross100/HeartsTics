@@ -48,9 +48,10 @@ public class DocenteDao implements IDocenteDao {
         String consulta = "SELECT * FROM Usuario where idTipoUsuario=?";
         try {
             PreparedStatement stmt = this.conexion.getConexion().prepareStatement(consulta);
+            stmt.setInt(1,2);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                docentes.add(new Docente(obtenerTipoDoc(rs.getInt("idTipoDocumento")),
+                docentes.add(new Docente(rs.getLong("idUsuario"),obtenerTipoDoc(rs.getInt("idTipoDocumento")),
                         rs.getString("numDoc"),
                         rs.getString("correo"), rs.getDate("fechaNacimiento"),
                         rs.getString("tipoSangre"), rs.getString("ciudadActual"),

@@ -12,14 +12,14 @@ import java.sql.Date;
  */
 public class Docente extends Usuario {
 
-    public Docente(TipoDocumento tipoDoc, String numDoc, String correo,
+    public Docente(long idUsuario, TipoDocumento tipoDoc, String numDoc, String correo,
             Date fechaNacimiento, String tipoSangre, String ciudadActual,
             String departamentoActual, String genero, String eps, String nombres,
             String apellidos, String telefono, String ciudadNacimiento,
             String departamentoNacimiento, String paisNacimiento, String paisActual,
             String usuario, String contra) {
 
-        super(tipoDoc, numDoc, correo, fechaNacimiento, tipoSangre, ciudadActual,
+        super(idUsuario, tipoDoc, numDoc, correo, fechaNacimiento, tipoSangre, ciudadActual,
                 departamentoActual, genero, eps, nombres, apellidos, telefono,
                 ciudadNacimiento, departamentoNacimiento, paisNacimiento, paisActual,
                 usuario, contra);

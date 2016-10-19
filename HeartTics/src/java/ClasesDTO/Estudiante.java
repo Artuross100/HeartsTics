@@ -18,14 +18,14 @@ public class Estudiante extends Usuario {
     private char curso;
     private String codigo;
     
-    public Estudiante(TipoDocumento tipoDoc, String numDoc, String correo, 
+    public Estudiante(long idUsuario, TipoDocumento tipoDoc, String numDoc, String correo, 
             Date fechaNacimiento, String tipoSangre, String ciudadActual, 
             String departamentoActual, String genero, String eps, String nombres, 
             String apellidos, String telefono, String ciudadNacimiento, 
             String departamentoNacimiento, String paisNacimiento, String paisActual, 
             String usuario, String contra, int grupo, char curso, String codigo) {
         
-        super(tipoDoc, numDoc, correo, fechaNacimiento, tipoSangre, ciudadActual, 
+        super(idUsuario, tipoDoc, numDoc, correo, fechaNacimiento, tipoSangre, ciudadActual, 
                 departamentoActual, genero, eps, nombres, apellidos, telefono, 
                 ciudadNacimiento, departamentoNacimiento, paisNacimiento, paisActual, 
                 usuario, contra);
